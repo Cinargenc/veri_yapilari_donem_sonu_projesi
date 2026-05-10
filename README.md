@@ -1,41 +1,55 @@
-# veri_yapilari_donem_sonu_projesi
+Veri Yapıları Dönem Sonu Projesi
 
-Proje tamamen modüler bir C mimarisiyle yazılmış olup, derleme işlemleri için bir Makefile  içermektedir. Projeyi kendi bilgisayarınızda derleyip çalıştırmak için aşağıdaki adımları izleyebilirsiniz.  
+Bu proje, modüler C programlama mimarisi kullanılarak geliştirilmiştir ve derleme işlemlerinin kolaylaştırılması amacıyla bir Makefile içermektedir. Aşağıdaki adımları takip ederek projeyi kendi bilgisayarınızda derleyebilir ve çalıştırabilirsiniz.
 
-Gereksinimler:
+Gereksinimler
 
-C Derleyicisi (GCC vb.)
+Projeyi çalıştırabilmek için sisteminizde aşağıdaki araçların kurulu olması gerekmektedir:
 
-make aracı (Sisteminize kurulu değilse Windows için MinGW üzerinden, Linux/macOS için paket yöneticisinden kurabilirsiniz).
+C Derleyicisi (GCC önerilir)
+make aracı
 
-Adım Adım Kurulum:
+make aracı sisteminizde kurulu değilse:
 
-1. Projeyi Klonlayın:
-Öncelikle terminal veya komut satırını açıp projeyi bilgisayarınıza indirin ve proje dizinine girin:
+Windows için: MinGW veya MSYS2 üzerinden kurulabilir.
+Linux/macOS için: Paket yöneticileri (apt, brew, pacman vb.) kullanılarak yüklenebilir.
+Kurulum ve Çalıştırma
+1. Projeyi Klonlayın
 
-Bash
+Terminal veya komut satırını açarak aşağıdaki komutları çalıştırın:
+
 git clone https://github.com/Cinargenc/veri_yapilari_donem_sonu_projesi
-cd veri_yapıları
+cd veri_yapilari_donem_sonu_projesi
+2. Projeyi Derleyin
 
-2. Projeyi Derleyin:
-Sistemde birden fazla .c ve .h dosyası bulunduğu için tek tek derlemek yerine Makefile  kullanıyoruz. Terminale sadece aşağıdaki komutu yazmanız yeterlidir:  
+Projede birden fazla .c ve .h dosyası bulunduğundan dolayı derleme işlemleri Makefile üzerinden gerçekleştirilmektedir.
 
-Bash
+Aşağıdaki komutu çalıştırmanız yeterlidir:
+
 make
-Bu komut, tüm modülleri derleyip birbirine bağlayacak ve çalıştırılabilir (executable) ana dosyayı oluşturacaktır. (Not: Proje, Linux, Windows ve macOS (M serisi ARM mimarileri dahil) ortamlarında derlenebilecek şekilde tasarlanmıştır.)
 
-3. Sistemi Başlatın:
-Derleme işlemi hatasız tamamlandıktan sonra oluşan programı çalıştırarak sistemi başlatabilirsiniz:
+Bu işlem sonucunda tüm modüller derlenecek ve çalıştırılabilir ana program oluşturulacaktır.
 
-Windows sistemler için:
+Proje; Windows, Linux ve macOS (ARM/M serisi işlemciler dahil) sistemlerinde çalışabilecek şekilde tasarlanmıştır.
 
-Bash
+3. Programı Çalıştırın
+
+Derleme işlemi başarıyla tamamlandıktan sonra programı aşağıdaki komutlarla çalıştırabilirsiniz.
+
+Windows
 gorev_sistemi.exe
-Linux / macOS sistemler için:
-
-Bash
+Linux / macOS
 ./gorev_sistemi
-(Not: Çalıştırılabilir dosyanın adı Makefile konfigürasyonunuza göre farklılık gösterebilir.)
+Proje Yapısı
+
+Proje, modüler programlama yaklaşımıyla geliştirilmiştir. Her veri yapısı ve sistem bileşeni ayrı kaynak dosyalarında tanımlanmıştır. Bu yapı sayesinde:
+
+Kod okunabilirliği artırılmış,
+Bakım ve geliştirme süreçleri kolaylaştırılmış,
+Platform bağımsız derleme desteği sağlanmıştır.
+Not
+
+Çalıştırılabilir dosyanın adı kullanılan işletim sistemine göre farklılık gösterebilir. Eğer farklı bir isim oluşursa Makefile içeriğini kontrol edebilirsiniz. adı Makefile konfigürasyonunuza göre farklılık gösterebilir.)
 
 4. Temizlik İşlemleri (Opsiyonel):
 Kodlar üzerinde değişiklik yapmak isterseniz veya sistemi baştan derlemeniz gerekirse, daha önce oluşturulmuş derleme kalıntılarını (object dosyalarını) temizlemek için şu komutu kullanabilirsiniz:
