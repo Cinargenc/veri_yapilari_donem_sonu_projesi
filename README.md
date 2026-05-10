@@ -16,6 +16,7 @@ Adım Adım Kurulum:
 Bash
 git clone https://github.com/Cinargenc/veri_yapilari_donem_sonu_projesi
 cd veri_yapıları
+
 2. Projeyi Derleyin:
 Sistemde birden fazla .c ve .h dosyası bulunduğu için tek tek derlemek yerine Makefile  kullanıyoruz. Terminale sadece aşağıdaki komutu yazmanız yeterlidir:  
 
