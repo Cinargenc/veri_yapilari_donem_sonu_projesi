@@ -26,3 +26,12 @@ Terminal veya komut satırını açarak aşağıdaki komutları çalıştırın:
 git clone https://github.com/Cinargenc/veri_yapilari_donem_sonu_projesi.git
 cd veri_yapilari_donem_sonu_projesi
 
+
+### 2. Projeyi Derleyin
+
+Projede birden fazla .c ve .h dosyası bulunduğundan derleme işlemleri Makefile üzerinden gerçekleştirilmektedir.
+
+Aşağıdaki komutu çalıştırmanız yeterlidir:
+
+make
+
