@@ -2,7 +2,7 @@ Veri Yapıları Dönem Sonu Projesi
 
 Bu proje, modüler C programlama mimarisi kullanılarak geliştirilmiştir ve derleme işlemlerinin kolaylaştırılması amacıyla bir Makefile içermektedir. Aşağıdaki adımları takip ederek projeyi kendi bilgisayarınızda derleyebilir ve çalıştırabilirsiniz.
 
-Gereksinimler
+#Gereksinimler
 
 Projeyi çalıştırabilmek için sisteminizde aşağıdaki araçların kurulu olması gerekmektedir:
 
