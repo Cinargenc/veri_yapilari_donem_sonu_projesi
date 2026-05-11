@@ -1,0 +1,15 @@
+# Derlenmiş çıktılar
+*.exe
+*.o
+*.out
+gorev_sistemi
+
+# Veri dosyası (binary, repoya eklenmez)
+gorevler.bin
+
+# VS Code yerel ayarları
+.vscode/
+
+# Windows sistem dosyaları
+Thumbs.db
+desktop.ini

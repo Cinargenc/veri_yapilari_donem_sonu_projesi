@@ -83,12 +83,6 @@ void gorev_yazdir(const Gorev *g) {
     printf(KALIN "+-----------------------------------------------------------+\n" SIFIRLA);
 }
 
-/* ── Stdin temizle (kalan karakterleri at) ──────────────── */
-static void stdin_temizle(void) {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
-
 /* ── UTF-8 güvenli satır okuma ─────────────────────────── */
 /* Windows CMD'de fgets() UTF-8 multi-byte karakterleri
    yanlış sayar ve erken keser. ReadConsoleW ile okuyup
@@ -183,4 +177,38 @@ void gorev_gir(Gorev *g, int id) {
         tmp = sayi_oku();
     } while (tmp < 0 || tmp > 2);
     g->durum = (GorevDurum)tmp;
+}
+
+/* ══════════════════════════════════════════════════════════
+   Dosya G/Ç  (eski file_io.c — task modülüne dahil edildi)
+   ══════════════════════════════════════════════════════════ */
+
+/* Tüm görevleri ikili dosyaya yaz */
+int dosyaya_kaydet(const Gorev *gorevler, int sayi) {
+    FILE *fp = fopen(DOSYA_ADI, "wb");
+    if (!fp) {
+        printf(STL_HATA "[HATA] Dosya acilamadi: %s\n" SIFIRLA, DOSYA_ADI);
+        return -1;
+    }
+    fwrite(&sayi, sizeof(int), 1, fp);
+    fwrite(gorevler, sizeof(Gorev), sayi, fp);
+    fclose(fp);
+    printf(STL_BASARI "[KAYIT] %d gorev '%s' dosyasina kaydedildi.\n" SIFIRLA,
+           sayi, DOSYA_ADI);
+    return sayi;
+}
+
+/* Görevleri ikili dosyadan oku */
+int dosyadan_yukle(Gorev *gorevler, int maks) {
+    FILE *fp = fopen(DOSYA_ADI, "rb");
+    if (!fp) return 0;   /* Dosya yoksa sessizce çık */
+
+    int sayi = 0;
+    fread(&sayi, sizeof(int), 1, fp);
+    if (sayi > maks) sayi = maks;
+    int okunan = (int)fread(gorevler, sizeof(Gorev), sayi, fp);
+    fclose(fp);
+    printf(STL_BASARI "[YUKLE] %d gorev '%s' dosyasindan yuklendi.\n" SIFIRLA,
+           okunan, DOSYA_ADI);
+    return okunan;
 }

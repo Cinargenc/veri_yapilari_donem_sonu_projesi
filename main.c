@@ -5,11 +5,9 @@
 
 #include "colors.h"
 #include "task.h"
-#include "file_io.h"
 #include "array_list.h"
 #include "linked_list.h"
-#include "stack.h"
-#include "queue.h"
+#include "linear_ds.h"
 #include "priority_queue.h"
 #include "bst.h"
 #include "hash_table.h"

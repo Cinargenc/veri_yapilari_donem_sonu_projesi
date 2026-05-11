@@ -43,4 +43,10 @@ void        id_baslangic_ayarla(int id);
 void        utf8_satir_oku(char *buf, int buf_boyut);
 int         sayi_oku(void);
 
+/* ── Dosya G/Ç (Kaydet / Yükle) ────────────────────────── */
+#define DOSYA_ADI "gorevler.bin"
+
+int dosyaya_kaydet(const Gorev *gorevler, int sayi);
+int dosyadan_yukle(Gorev *gorevler, int maks);
+
 #endif /* TASK_H */

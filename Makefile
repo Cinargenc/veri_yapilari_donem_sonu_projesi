@@ -2,8 +2,8 @@ CC      = gcc
 CFLAGS  = -Wall -Wextra -std=c11 -O2
 TARGET  = gorev_sistemi
 
-SRCS = main.c task.c file_io.c array_list.c linked_list.c \
-       stack.c queue.c priority_queue.c bst.c hash_table.c \
+SRCS = main.c task.c array_list.c linked_list.c \
+       linear_ds.c priority_queue.c bst.c hash_table.c \
        graph.c category_tree.c performance.c
 
 OBJS = $(SRCS:.c=.o)
