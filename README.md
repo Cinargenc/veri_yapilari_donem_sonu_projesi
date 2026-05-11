@@ -1,93 +1,106 @@
-# Veri Yapıları Dönem Sonu Projesi
+# Görev Yönetim ve Planlayıcı Sistemi
 
-Bu proje, C programlama dili kullanılarak geliştirilmiş modüler bir veri yapıları uygulamasıdır. Projede farklı veri yapıları ve sistem bileşenleri ayrı modüller halinde tasarlanmış olup, derleme işlemlerinin kolaylaştırılması amacıyla `Makefile` kullanılmıştır.
+Bu proje, BMT210 Veri Yapıları dersi dönem sonu projesi olarak geliştirilmiştir. C programlama dili kullanılarak çeşitli veri yapıları (dizi, bağlı liste, yığın, kuyruk, öncelik kuyruğu, BST, hash tablo, graf, kategori ağacı) ile modüler bir görev yönetim sistemi oluşturulmuştur.
 
-Proje; Windows, Linux ve macOS işletim sistemlerinde çalışabilecek şekilde geliştirilmiştir.
+Sistem, görev ekleme, silme, güncelleme, arama, bağımlılık yönetimi ve performans karşılaştırmaları gibi işlemleri destekler. Tüm veri yapıları aynı anda kullanılır ve işlemlerin tutarlılığı sağlanır.
 
----
+## Özellikler
 
-# Gereksinimler
+- **Görev Yönetimi**: Görev ekleme, silme, güncelleme
+- **Undo İşlemi**: Yığın (Stack) kullanarak son işlemi geri alma
+- **Farklı Veri Yapılarında Görüntüleme**:
+  - Dizi listesi
+  - Bağlı liste
+  - Tarihe göre sıralı (BST In-Order)
+  - Öncelik kuyruğu (En acil görevler)
+  - Bekleyen kuyruk (Queue)
+  - ID ile hızlı arama (Hash Table)
+- **Tarih Aralığı Sorgulama**: BST kullanarak tarih filtreleme
+- **Bağımlılık Yönetimi**: Graf yapısı ile görev bağımlılıkları
+- **Topolojik Sıralama**: Görevlerin bağımlılık sırasına göre işlenmesi
+- **Kategori Hiyerarşisi**: Ağaç yapısı ile kategori yönetimi
+- **Performans Testleri**: Farklı veri yapılarının karşılaştırması
+- **Veri Kalıcılığı**: Görevlerin dosyaya kaydedilmesi ve yüklenmesi
 
-Projeyi derleyip çalıştırabilmek için sisteminizde aşağıdaki araçların kurulu olması gerekmektedir:
+## Gereksinimler
 
-- GCC veya benzeri bir C derleyicisi
-- `make` aracı
+- GCC derleyicisi (C11 standardı desteği ile)
+- Windows için: MinGW veya MSYS2
+- Linux/macOS için: GCC ve make
 
-`make` aracı sisteminizde kurulu değilse:
+## Kurulum ve Çalıştırma
 
-- Windows için: `MinGW` veya `MSYS2`
-- Linux için: Paket yöneticileri (`apt`, `pacman` vb.)
-- macOS için: `Xcode Command Line Tools`
-
----
-
-# Projeyi İndirme
-
-Projeyi bilgisayarınıza klonlamak için terminal üzerinden aşağıdaki komutları çalıştırın:
+### 1. Projeyi İndirme
 
 ```bash
 git clone https://github.com/Cinargenc/veri_yapilari_donem_sonu_projesi.git
 cd veri_yapilari_donem_sonu_projesi
 ```
 
----
-
-# Projeyi Derleme
-
-Projede birden fazla `.c` ve `.h` dosyası bulunduğundan dolayı derleme işlemleri `Makefile` üzerinden gerçekleştirilmektedir.
-
-Projeyi derlemek için terminalde aşağıdaki komutu çalıştırmanız yeterlidir:
+### 2. Derleme
 
 ```bash
 make
 ```
 
-Bu işlem sonucunda tüm kaynak dosyaları derlenecek ve çalıştırılabilir program dosyası oluşturulacaktır.
+Eğer `make` kurulu değilse, manuel derleme:
 
-Derleme işlemi başarılı olduğunda terminal ekranında hata mesajı görünmeyecektir.
+```bash
+gcc -Wall -Wextra -std=c11 -O2 -o gorev_sistemi main.c task.c file_io.c array_list.c linked_list.c stack.c queue.c priority_queue.c bst.c hash_table.c graph.c category_tree.c performance.c
+```
 
----
+### 3. Çalıştırma
 
-# Programı Çalıştırma
-
-Derleme işlemi tamamlandıktan sonra program aşağıdaki komutlarla çalıştırılabilir.
-
-## Windows
-
+Windows:
 ```bash
 gorev_sistemi.exe
 ```
 
-## Linux / macOS
-
+Linux/macOS:
 ```bash
 ./gorev_sistemi
 ```
 
----
+## Kullanım
 
-# Proje Yapısı
+Program çalıştırıldığında ana menü görüntülenir. Rakamlarla seçim yapabilirsiniz:
 
-Proje modüler programlama yaklaşımı kullanılarak geliştirilmiştir. Kaynak kodlar farklı `.c` ve `.h` dosyalarına ayrılarak daha düzenli, okunabilir ve sürdürülebilir bir yapı oluşturulmuştur.
+1. **Görev Ekle**: Yeni görev oluşturma
+2. **Görev Sil**: ID ile görev silme
+3. **Görev Güncelle**: Mevcut görevi düzenleme
+4. **Son İşlemi Geri Al**: Undo işlemi (Stack)
+5-11. **Görev Listeleme**: Farklı veri yapılarında görüntüleme
+12. **Bağımlılık Ekle / Graf Göster**: Görev bağımlılıkları
+13. **Topolojik Görev Sırası**: Bağımlılık sırasına göre sıralama
+14. **Proje Hiyerarşisi**: Kategori ağacı
+15. **Alt Kategori Ekle**: Yeni kategori ekleme
+16. **Performans Karşılaştırma Testleri**: Veri yapılarının hız testi
+17. **Hash Tablo İstatistiği**: Çakışma sayısı vb.
+18. **Kuyruktaki Görevi İşle**: Queue'dan görev alma
+0. **Kaydet ve Çık**: Değişiklikleri kaydet ve çıkış
 
-Bu yapı sayesinde:
+## Proje Yapısı
 
-- Kod okunabilirliği artırılmıştır.
-- Bakım ve geliştirme işlemleri kolaylaştırılmıştır.
-- Derleme süreci `Makefile` ile otomatik hale getirilmiştir.
-- Platform bağımsız kullanım hedeflenmiştir.
+- `main.c`: Ana program ve menü
+- `task.c/h`: Görev veri modeli ve yardımcı fonksiyonlar
+- `file_io.c/h`: Dosya okuma/yazma işlemleri
+- `array_list.c/h`: Dinamik dizi
+- `linked_list.c/h`: Bağlı liste
+- `stack.c/h`: Yığın
+- `queue.c/h`: Kuyruk
+- `priority_queue.c/h`: Öncelik kuyruğu
+- `bst.c/h`: İkili arama ağacı
+- `hash_table.c/h`: Hash tablo
+- `graph.c/h`: Graf
+- `category_tree.c/h`: Kategori ağacı
+- `performance.c/h`: Performans testleri
+- `colors.h`: Terminal renk kodları
+- `Makefile`: Derleme scripti
 
----
+## Katkıda Bulunma
 
-# Kullanılan Teknolojiler
+Bu proje eğitim amaçlıdır. Geliştirmeler için fork edip pull request gönderebilirsiniz.
 
-- C Programlama Dili
-- GCC Derleyicisi
-- Makefile
-- Modüler Programlama Yaklaşımı
+## Lisans
 
----
-
-# Not
-
-Çalıştırılabilir dosyanın adı işletim sistemine veya `Makefile` yapılandırmasına göre değişiklik gösterebilir. Eğer farklı bir çıktı oluşursa `Makefile` dosyasını kontrol edebilirsiniz.
+Bu proje açık kaynak kodludur.
