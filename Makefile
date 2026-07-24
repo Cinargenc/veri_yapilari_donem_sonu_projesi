@@ -1,11 +1,8 @@
 CC      = gcc
-CFLAGS  = -Wall -Wextra -std=c11 -O2
+CFLAGS  = -Wall -Wextra -std=c11 -O2 -I include
 TARGET  = gorev_sistemi
 
-SRCS = main.c task.c file_io.c array_list.c linked_list.c \
-       stack.c queue.c priority_queue.c bst.c hash_table.c \
-       graph.c category_tree.c performance.c
-
+SRCS = $(wildcard src/*.c)
 OBJS = $(SRCS:.c=.o)
 
 all: $(TARGET)
@@ -13,11 +10,11 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-%.o: %.c
+src/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	del /f /q *.o $(TARGET).exe 2>nul || true
+	del /f /q src\*.o $(TARGET).exe 2>nul || true
 
 run: all
 	./$(TARGET)

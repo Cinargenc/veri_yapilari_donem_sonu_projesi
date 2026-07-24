@@ -37,20 +37,38 @@ Her görev işlemi (ekleme, silme, güncelleme) tüm veri yapılarında eş zama
 
 ```
 .
-├── main.c              # Giriş noktası ve ana menü
-├── task.c / task.h     # Görev veri modeli + dosya G/Ç
-├── array_list.c/h      # Dizi tabanlı liste (lineer & binary arama)
-├── linked_list.c/h     # Tek yönlü bağlı liste
-├── stack.c / stack.h   # Yığın — Undo işlemleri
-├── queue.c / queue.h   # Dairesel kuyruk
-├── priority_queue.c/h  # Max-heap öncelik kuyruğu
-├── bst.c / bst.h       # İkili arama ağacı (tarih anahtarı)
-├── hash_table.c/h      # Hash tablo (ID → Görev, zincirleme)
-├── graph.c / graph.h   # Yönlü graf + topolojik sıralama
-├── category_tree.c/h   # N-li kategori ağacı
-├── performance.c/h     # Karşılaştırmalı benchmark testleri
-├── colors.h            # ANSI terminal renk makroları
-└── Makefile            # Derleme betiği
+├── src/                    ← Kaynak dosyaları (.c)
+│   ├── main.c              # Giriş noktası ve ana menü
+│   ├── task.c              # Görev veri modeli + giriş/çıkış fonksiyonları
+│   ├── file_io.c           # Binary dosyaya kaydet / yükle
+│   ├── array_list.c        # Dizi tabanlı liste
+│   ├── linked_list.c       # Tek yönlü bağlı liste
+│   ├── stack.c             # Yığın (Undo işlemleri)
+│   ├── queue.c             # Dairesel kuyruk
+│   ├── priority_queue.c    # Max-heap öncelik kuyruğu
+│   ├── bst.c               # İkili arama ağacı (tarih anahtarı)
+│   ├── hash_table.c        # Hash tablo (ID → Görev, zincirleme)
+│   ├── graph.c             # Yönlü graf + topolojik sıralama
+│   ├── category_tree.c     # N-li kategori ağacı
+│   └── performance.c       # Karşılaştırmalı benchmark testleri
+│
+├── include/                ← Başlık dosyaları (.h)
+│   ├── task.h
+│   ├── file_io.h
+│   ├── array_list.h
+│   ├── linked_list.h
+│   ├── stack.h
+│   ├── queue.h
+│   ├── priority_queue.h
+│   ├── bst.h
+│   ├── hash_table.h
+│   ├── graph.h
+│   ├── category_tree.h
+│   ├── performance.h
+│   └── colors.h            # ANSI terminal renk makroları
+│
+├── Makefile                ← Derleme betiği
+└── README.md
 ```
 
 ---
@@ -81,10 +99,11 @@ make
 `make` yoksa manuel:
 
 ```bash
-gcc -Wall -Wextra -std=c11 -O2 -o gorev_sistemi \
-    main.c task.c array_list.c linked_list.c \
-    stack.c queue.c priority_queue.c bst.c \
-    hash_table.c graph.c category_tree.c performance.c
+# Windows
+gcc -Wall -Wextra -std=c11 -O2 -I include -o gorev_sistemi src/*.c
+
+# Linux / macOS
+gcc -Wall -Wextra -std=c11 -O2 -I include -o gorev_sistemi src/*.c
 ```
 
 ### 3. Çalıştır

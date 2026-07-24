@@ -83,11 +83,6 @@ void gorev_yazdir(const Gorev *g) {
     printf(KALIN "+-----------------------------------------------------------+\n" SIFIRLA);
 }
 
-/* ── Stdin temizle (kalan karakterleri at) ──────────────── */
-static void stdin_temizle(void) {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
 
 /* ── UTF-8 güvenli satır okuma ─────────────────────────── */
 /* Windows CMD'de fgets() UTF-8 multi-byte karakterleri
