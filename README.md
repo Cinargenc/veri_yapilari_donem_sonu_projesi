@@ -156,10 +156,10 @@ gorev_sistemi.exe
 
 ## 👥 Geliştiriciler
 
-| İsim | Numara |
-|---|---|
-| Çınar Genç | 24181616059 |
-| Yusuf Kuru | 24181616006 |
+| İsim 
+|---
+| Çınar Genç 
+| Yusuf Kuru 
 
 **Ders:** BMT210 Veri Yapıları  
 **Dönem:** 2024–2025 Bahar
