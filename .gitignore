@@ -4,8 +4,12 @@
 *.out
 gorev_sistemi
 
-# Veri dosyası (binary, repoya eklenmez)
+# Veri dosyası (kişisel, repoya eklenmez)
 gorevler.bin
 
 # VS Code yerel ayarları
 .vscode/
+
+# Windows sistem dosyaları
+Thumbs.db
+desktop.ini

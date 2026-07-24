@@ -1,106 +1,146 @@
-# Görev Yönetim ve Planlayıcı Sistemi
+# 🗂️ Görev Yönetim ve Planlayıcı Sistemi
 
-Bu proje, BMT210 Veri Yapıları dersi dönem sonu projesi olarak geliştirilmiştir. C programlama dili kullanılarak çeşitli veri yapıları (dizi, bağlı liste, yığın, kuyruk, öncelik kuyruğu, BST, hash tablo, graf, kategori ağacı) ile modüler bir görev yönetim sistemi oluşturulmuştur.
+> **BMT210 Veri Yapıları** — Dönem Sonu Projesi  
+> C dili ile çoklu veri yapısı kullanılarak geliştirilmiş terminal tabanlı görev yöneticisi.
 
-Sistem, görev ekleme, silme, güncelleme, arama, bağımlılık yönetimi ve performans karşılaştırmaları gibi işlemleri destekler. Tüm veri yapıları aynı anda kullanılır ve işlemlerin tutarlılığı sağlanır.
+---
 
-## Özellikler
+## 📌 Proje Hakkında
 
-- **Görev Yönetimi**: Görev ekleme, silme, güncelleme
-- **Undo İşlemi**: Yığın (Stack) kullanarak son işlemi geri alma
-- **Farklı Veri Yapılarında Görüntüleme**:
-  - Dizi listesi
-  - Bağlı liste
-  - Tarihe göre sıralı (BST In-Order)
-  - Öncelik kuyruğu (En acil görevler)
-  - Bekleyen kuyruk (Queue)
-  - ID ile hızlı arama (Hash Table)
-- **Tarih Aralığı Sorgulama**: BST kullanarak tarih filtreleme
-- **Bağımlılık Yönetimi**: Graf yapısı ile görev bağımlılıkları
-- **Topolojik Sıralama**: Görevlerin bağımlılık sırasına göre işlenmesi
-- **Kategori Hiyerarşisi**: Ağaç yapısı ile kategori yönetimi
-- **Performans Testleri**: Farklı veri yapılarının karşılaştırması
-- **Veri Kalıcılığı**: Görevlerin dosyaya kaydedilmesi ve yüklenmesi
+Bu proje; **dizi, bağlı liste, yığın, kuyruk, öncelik kuyruğu, BST, hash tablo, graf** ve **kategori ağacı** veri yapılarının gerçek bir uygulamada birlikte nasıl kullanıldığını göstermek amacıyla geliştirilmiştir.
 
-## Gereksinimler
+Her görev işlemi (ekleme, silme, güncelleme) tüm veri yapılarında eş zamanlı olarak gerçekleşir. Bu sayede her yapının farklı avantajları canlı olarak karşılaştırılabilir.
 
-- GCC derleyicisi (C11 standardı desteği ile)
-- Windows için: MinGW veya MSYS2
-- Linux/macOS için: GCC ve make
+---
 
-## Kurulum ve Çalıştırma
+## ✨ Özellikler
 
-### 1. Projeyi İndirme
+| Özellik | Kullanılan Veri Yapısı |
+|---|---|
+| Görev ekleme / silme / güncelleme | Tüm yapılara yayılır |
+| Son işlemi geri alma (Undo) | **Yığın (Stack)** |
+| Sırasız listeleme | **Dizi (Array List)** |
+| Bağlı listeleme | **Bağlı Liste (Linked List)** |
+| Tarihe göre sıralı listeleme | **BST (In-Order Traversal)** |
+| En acil görevler | **Öncelik Kuyruğu (Max-Heap)** |
+| FIFO görev işleme | **Dairesel Kuyruk (Queue)** |
+| O(1) ID araması | **Hash Tablo (Zincirleme)** |
+| Tarih aralığı sorgusu | **BST (Budamalı Arama)** |
+| Görev bağımlılıkları | **Yönlü Graf (DFS / Topo Sort)** |
+| Proje kategori hiyerarşisi | **Kategori Ağacı (N-li Ağaç)** |
+| Veri yapıları performans testi | `performance.c` |
+| Kalıcı depolama | Binary dosya (`gorevler.bin`) |
+
+---
+
+## 📁 Proje Yapısı
+
+```
+.
+├── main.c              # Giriş noktası ve ana menü
+├── task.c / task.h     # Görev veri modeli + dosya G/Ç
+├── array_list.c/h      # Dizi tabanlı liste (lineer & binary arama)
+├── linked_list.c/h     # Tek yönlü bağlı liste
+├── stack.c / stack.h   # Yığın — Undo işlemleri
+├── queue.c / queue.h   # Dairesel kuyruk
+├── priority_queue.c/h  # Max-heap öncelik kuyruğu
+├── bst.c / bst.h       # İkili arama ağacı (tarih anahtarı)
+├── hash_table.c/h      # Hash tablo (ID → Görev, zincirleme)
+├── graph.c / graph.h   # Yönlü graf + topolojik sıralama
+├── category_tree.c/h   # N-li kategori ağacı
+├── performance.c/h     # Karşılaştırmalı benchmark testleri
+├── colors.h            # ANSI terminal renk makroları
+└── Makefile            # Derleme betiği
+```
+
+---
+
+## 🚀 Kurulum ve Çalıştırma
+
+### Gereksinimler
+
+- **GCC** — C11 desteği ile (`gcc --version` ile kontrol edin)
+- **Windows**: [MinGW-w64](https://www.mingw-w64.org/) veya [MSYS2](https://www.msys2.org/)
+- **Linux / macOS**: `gcc` + `make` (genellikle kurulu gelir)
+
+---
+
+### 1. Repoyu klonla
 
 ```bash
 git clone https://github.com/Cinargenc/veri_yapilari_donem_sonu_projesi.git
 cd veri_yapilari_donem_sonu_projesi
 ```
 
-### 2. Derleme
+### 2. Derle
 
 ```bash
 make
 ```
 
-Eğer `make` kurulu değilse, manuel derleme:
+`make` yoksa manuel:
 
 ```bash
-gcc -Wall -Wextra -std=c11 -O2 -o gorev_sistemi main.c task.c file_io.c array_list.c linked_list.c stack.c queue.c priority_queue.c bst.c hash_table.c graph.c category_tree.c performance.c
+gcc -Wall -Wextra -std=c11 -O2 -o gorev_sistemi \
+    main.c task.c array_list.c linked_list.c \
+    stack.c queue.c priority_queue.c bst.c \
+    hash_table.c graph.c category_tree.c performance.c
 ```
 
-### 3. Çalıştırma
+### 3. Çalıştır
 
-Windows:
-```bash
+**Windows:**
+```cmd
 gorev_sistemi.exe
 ```
 
-Linux/macOS:
+**Linux / macOS:**
 ```bash
 ./gorev_sistemi
 ```
 
-## Kullanım
+---
 
-Program çalıştırıldığında ana menü görüntülenir. Rakamlarla seçim yapabilirsiniz:
+## 🖥️ Menü Referansı
 
-1. **Görev Ekle**: Yeni görev oluşturma
-2. **Görev Sil**: ID ile görev silme
-3. **Görev Güncelle**: Mevcut görevi düzenleme
-4. **Son İşlemi Geri Al**: Undo işlemi (Stack)
-5-11. **Görev Listeleme**: Farklı veri yapılarında görüntüleme
-12. **Bağımlılık Ekle / Graf Göster**: Görev bağımlılıkları
-13. **Topolojik Görev Sırası**: Bağımlılık sırasına göre sıralama
-14. **Proje Hiyerarşisi**: Kategori ağacı
-15. **Alt Kategori Ekle**: Yeni kategori ekleme
-16. **Performans Karşılaştırma Testleri**: Veri yapılarının hız testi
-17. **Hash Tablo İstatistiği**: Çakışma sayısı vb.
-18. **Kuyruktaki Görevi İşle**: Queue'dan görev alma
-0. **Kaydet ve Çık**: Değişiklikleri kaydet ve çıkış
+```
+┌─────────────────────────────────────────┐
+│               ANA MENU                 │
+├─────────────────────────────────────────┤
+│  1. Gorev Ekle                          │
+│  2. Gorev Sil                           │
+│  3. Gorev Guncelle                      │
+│  4. Son Islemi Geri Al  (Undo/Stack)    │
+├─────────────────────────────────────────┤
+│  5. Tum Gorevler  (Dizi)                │
+│  6. Tum Gorevler  (Bagli Liste)         │
+│  7. Tarihe Gore Sirali (BST In-Order)   │
+│  8. En Acil Gorevler  (Priority Queue)  │
+│  9. Bekleyen Kuyruk   (Queue)           │
+│ 10. ID ile Hizli Ara  (Hash Table)      │
+│ 11. Tarih Araligi Sorgula (BST)         │
+├─────────────────────────────────────────┤
+│ 12. Bagimlilik Ekle / Graf Goster       │
+│ 13. Topologik Gorev Sirasi              │
+│ 14. Proje Hiyerarsisi (Kategori Agaci)  │
+│ 15. Alt Kategori Ekle                   │
+├─────────────────────────────────────────┤
+│ 16. Performans Karsilastirma Testleri   │
+│ 17. Hash Tablo Istatistigi              │
+│ 18. Kuyruktaki Gorevi Isle (Dequeue)    │
+├─────────────────────────────────────────┤
+│  0. Kaydet ve Cik                       │
+└─────────────────────────────────────────┘
+```
 
-## Proje Yapısı
+---
 
-- `main.c`: Ana program ve menü
-- `task.c/h`: Görev veri modeli ve yardımcı fonksiyonlar
-- `file_io.c/h`: Dosya okuma/yazma işlemleri
-- `array_list.c/h`: Dinamik dizi
-- `linked_list.c/h`: Bağlı liste
-- `stack.c/h`: Yığın
-- `queue.c/h`: Kuyruk
-- `priority_queue.c/h`: Öncelik kuyruğu
-- `bst.c/h`: İkili arama ağacı
-- `hash_table.c/h`: Hash tablo
-- `graph.c/h`: Graf
-- `category_tree.c/h`: Kategori ağacı
-- `performance.c/h`: Performans testleri
-- `colors.h`: Terminal renk kodları
-- `Makefile`: Derleme scripti
+## 👥 Geliştiriciler
 
-## Katkıda Bulunma
+| İsim | Numara |
+|---|---|
+| Çınar Genç | 24181616059 |
+| Yusuf Kuru | 24181616006 |
 
-Bu proje eğitim amaçlıdır. Geliştirmeler için fork edip pull request gönderebilirsiniz.
-
-## Lisans
-
-Bu proje açık kaynak kodludur.
+**Ders:** BMT210 Veri Yapıları  
+**Dönem:** 2024–2025 Bahar
